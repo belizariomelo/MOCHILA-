@@ -3,7 +3,10 @@ html {
   height: 100%;
   font-family: "Roboto", cursive;
 }
-
+.imagemMochila {
+  width: 20%;
+  height: 10%;
+}
 .conteudo {
   padding: 10vh 3em 0;
   display: flex;
@@ -191,3 +194,4 @@ html {
     min-width: 70%;
   }
 }
+
