@@ -142,22 +142,41 @@ const html = document.querySelector("html");
 const card = document.querySelector(".card");
 const items = document.querySelectorAll(".item");
 
+// verifica se o modo escuro está armazenado no localStorage
+if (localStorage.getItem("darkMode") === "true") {
+  checkbox.checked = true;
+  enableDarkMode();
+}
+
 checkbox.addEventListener("change", function () {
   if (this.checked) {
-    html.classList.add("dark-mode");
-    html.style.backgroundColor = "#252525";
-    card.style.backgroundColor = "#171717";
-    card.style.color = "white";
-    items.forEach((item) => {
-      item.style.backgroundColor = "#DA0037";
-    });
+    enableDarkMode();
+    // armazena a preferência do usuário no localStorage
+    localStorage.setItem("darkMode", "true");
   } else {
-    html.classList.remove("dark-mode");
-    html.style.backgroundColor = "#dcd7c9";
-    card.style.backgroundColor = "";
-    card.style.color = "black";
-    items.forEach((item) => {
-      item.style.backgroundColor = "#D2e2e1";
-    });
+    disableDarkMode();
+    // remove a preferência do usuário do localStorage
+    localStorage.removeItem("darkMode");
   }
 });
+
+function enableDarkMode() {
+  html.classList.add("dark-mode");
+  html.style.backgroundColor = "#252525";
+  card.style.backgroundColor = "#171717";
+  card.style.color = "white";
+  items.forEach((item) => {
+    item.style.backgroundColor = "#DA0037";
+  });
+}
+
+function disableDarkMode() {
+  html.classList.remove("dark-mode");
+  html.style.backgroundColor = "#dcd7c9";
+  card.style.backgroundColor = "";
+  card.style.color = "black";
+  items.forEach((item) => {
+    item.style.backgroundColor = "#D2e2e1";
+  });
+}
+
